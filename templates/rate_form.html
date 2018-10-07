@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+<html>
+    {% load static %}
+	<head>
+		<title>Code Rate</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+                            {% if response_string %}
+                            <li><a href="#one">Rated code</a></li>
+                            {% else %}
+                            <li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Rate your code</a></li>
+                            {% endif %}
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+{% if response_string %}
+            <!-- One -->
+                    <section id="one" class="wrapper style3 fade-up" >
+                        <div class="inner">
+                            <h2>We've checked your code.</h2>
+                            <code class="prettyprint">
+                            {{ code|linebreaks }}
+                            </code>
+                            <hr/>
+                            {{ response_string|linebreaks }}
+                        </div>
+                    </section>
+{% else %}
+                <!-- Intro -->
+                    <section id="intro" class="wrapper style1 fullscreen fade-up">
+                        <div class="inner">
+                            <h1>Code Rate</h1>
+                            <p>
+                            A simple website to figure out styling issues in your python code! <br/>
+                            We follow pep8 as the style guide. :)
+                            </p>
+                            <ul class="actions">
+                                <li><a href="#one" class="button scrolly">Let's rate your code!</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style3 spotlights">
+						<section>
+							<div class="content">
+								<div class="inner">
+                                    <h2> {{ message }}</h2>
+									{% if form.errors %}
+                                        <p style="color: red;">
+                                        Please the following error{{ form.errors|pluralize }}
+                                        </p>
+                                    {% endif %}
+                                     <form action="" method="post">
+                                         <table>
+                                             {{ form.as_table }}
+                                         </table>
+                                         {% csrf_token %}
+									    <ul class="actions">
+                                                <li><input class="button" type="submit" value="Submit"></li>
+							    		</ul>
+                                     </form>
+
+								</div>
+							</div>
+						</section>
+    			    </section>
+
+                <!-- Two -->
+                    <section id="two" class="wrapper style1 fade-up">
+                        <div class="inner">
+                            <h2>Behind the scenes</h2>
+                            <p> This is a project made for learning purpose. <br/> It's open source too! </p>
+                            <div class="features">
+                                <section>
+                                    <span class="icon major fa-code"></span>
+                                    <h3>The Source code</h3>
+                                    <p> The source code is freely available on github, under MIT License</p>
+                                </section>
+                            </div>
+                            <ul class="actions">
+                                <li><a href="PUT THE GITHUB URL HERE" class="button">Source code</a></li>
+                            </ul>
+                        </div>
+                    </section>
+{% endif %}
+
+                </div>
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+            <script src="{% static '/assets/js/jquery.min.js' %}"></script>
+            <script src="{% static '/assets/js/jquery.scrollex.min.js' %}"></script>
+            <script src="{% static '/assets/js/jquery.scrolly.min.js' %}"></script>
+            <script src="{% static '/assets/js/browser.min.js' %}"></script>
+            <script src="{% static '/assets/js/breakpoints.min.js' %}"></script>
+            <script src="{% static '/assets/js/util.js' %}"></script>
+            <script src="{% static '/assets/js/main.js' %}"></script>
+            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+	</body>
+</html>

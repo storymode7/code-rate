@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <h1>Rate your code!</h1>
+    </head>
+    <body>
+        {% if form.errors %}
+            <p style="color: red;">
+                Please the following error{{ form.errors|pluralize }}
+            </p>
+        {% endif %}
+        <form action="" method="post">
+            <table>
+                {{ form.as_table }}
+            </table>
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+
+</html>
