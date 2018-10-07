@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('rate/', rate),
+    path('', rate),
 ] + static(settings.STATIC_URL)
 
 urlpatterns += staticfiles_urlpatterns()
